@@ -1,8 +1,21 @@
 from fastapi import FastAPI, HTTPException
 from models import ToDo
 from database import tasks_db
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://127.0.0.1:5500",  # Frontend origin
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/todos/", response_model=ToDo)
 def add_tasks(todo: ToDo):

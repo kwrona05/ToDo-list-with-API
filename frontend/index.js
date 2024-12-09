@@ -27,8 +27,8 @@ todoForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const todo = {
     id: Date.now(),
-    title: todoTitle.value(),
-    description: todoDescription.value(),
+    title: todoTitle.value,
+    description: todoDescription.value,
     completed: false,
   };
   const response = await fetch(API_URL, {
@@ -57,4 +57,4 @@ async function deleteTask(id) {
   }
 }
 
-fetchTodo();
+fetchTodos();
